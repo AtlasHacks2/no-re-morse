@@ -2,7 +2,7 @@ from tkinter import *
 import Level1
 import Level2
 import Level3
-
+import HomePage
 def L1(root):
     root.destroy()
     Level1.LevelOne()
@@ -14,6 +14,9 @@ def L3(root):
     root.destroy()
     Level3.LevelThree()
 
+def Home(root):
+    root.destroy()
+    HomePage.home_page()
 
 class playnow:
     def __init__(self):
@@ -30,4 +33,6 @@ class playnow:
         Button(self.root, text='Level 8', width=20, bg='brown', fg='white').place(x=180, y=580)
         Button(self.root, text='Level 9', width=20, bg='brown', fg='white').place(x=180, y=640)
         Button(self.root, text='Level 10', width=20, bg='brown', fg='white').place(x=180, y=720)
+        Button(self.root, text='Home', width=20, bg='brown', fg='white', command=lambda: Home(self.root)).place(x=40,
+                                                                                                                y=20)
         self.root.mainloop()
