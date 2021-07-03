@@ -24,9 +24,6 @@ def eng_to_morse_code(message):
         return my_cipher
 
 
-
-
-
 class LevelTen:
     def go_home(self):
         self.root.destroy()
