@@ -4,35 +4,37 @@ import sqlite3
 import hashlib
 
 import HomePage
+import signUp
 
 
-class sign_up:
+def check_table_exists():
+    print("In check_table_exists")
 
-    def check_table_exists(self):
-        print("In check_table_exists")
+    db_file = 'sqliteDB/morseCode.db'
 
-        db_file = 'sqliteDB/morseCode.db'
+    try:
+        conn = sqlite3.connect(db_file)
 
-        try:
-            conn = sqlite3.connect(db_file)
+        query = "CREATE TABLE IF NOT EXISTS userInfo " \
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " \
+                "username STRING, " \
+                "password STRING);"
 
-            query = "CREATE TABLE IF NOT EXISTS userInfo " \
-                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, " \
-                    "username STRING, " \
-                    "password STRING);"
+        conn.execute(query)
 
-            conn.execute(query)
-
-        except Error as e:
-            print(e)
+    except Error as e:
+        print(e)
 
 
-    def hash_password(self, raw_password):
-        print("In hash_password")
+def hash_password(raw_password):
+    print("In hash_password")
 
-        encoded = raw_password.encode()
-        result = hashlib.sha256(encoded)
-        return result.hexdigest()
+    encoded = raw_password.encode()
+    result = hashlib.sha256(encoded)
+    return result.hexdigest()
+
+
+class login:
 
     def check_db_for_user(self, username, hashed_pw):
         print("In check_db_for_user")
@@ -47,29 +49,18 @@ class sign_up:
 
             data = cursor.fetchall()
 
-            print(data)
-
             if len(data) == 0:
+                self.warning_1['text'] = 'User not found!'
                 # the user doesnt exist
 
-                # create new user
-                cursor.execute("INSERT INTO userInfo(username, password) VALUES (?, ?)",
-                               (username, hashed_pw))
-
-                cursor.execute("SELECT rowid, username, password FROM userInfo WHERE username = ?", (username,))
-
-                data = cursor.fetchall()
-
-                print("2", data)
-                cursor.close()
-
-                conn.commit()
-                return True
+                return False
 
             else:
-                self.warning_1['text'] = 'User already exists!'
-
-                return False
+                print(data[0][2])
+                if data[0][2] == hashed_pw:
+                    return True
+                else:
+                    self.warning_1['text'] = 'Incorrect password!'
 
         except Error as e:
             print(e)
@@ -78,9 +69,9 @@ class sign_up:
 
     def check_user_exists(self, username, raw_password):
         # check if table exist
-        self.check_table_exists()
+        check_table_exists()
 
-        hashed_pw = self.hash_password(raw_password)
+        hashed_pw = hash_password(raw_password)
 
         return self.check_db_for_user(username, hashed_pw)
 
@@ -109,12 +100,16 @@ class sign_up:
         self.entry_2.configure(show='*')
         self.check.configure(command=self.show, text='show password')
 
+    def sign_up_insetead(self):
+        self.root.destroy()
+        signUp.sign_up()
+
     def __init__(self):
         self.root = Tk()
         self.root.geometry('500x300')
-        self.root.title("Registration Form")
+        self.root.title("No-re-morse")
 
-        self.label_0 = Label(self.root, text="Registration form", width=20, font=("bold", 20))
+        self.label_0 = Label(self.root, text="Login", width=20, font=("bold", 20))
         self.label_0.place(x=90, y=53)
 
         self.warning_1 = Label(self.root, text="", width=20, font=("bold", 10))
@@ -140,17 +135,19 @@ class sign_up:
 
         Button(self.root,
                text='Submit',
-               width=20,
+               width=9,
                bg='brown',
                fg='white',
                command=lambda: self.home_page(self.root,
                                          self.entry_1.get(),
-                                         self.entry_2.get())).place(x=180, y=250)
-        # Button(self.root, text='Sign in', width=20, bg='brown', fg='white', command=lambda: home_page(self.root)).place(x=180, y=380)
+                                         self.entry_2.get())).place(x=280, y=250)
+        Button(self.root,
+               text='Sign up',
+               width=9,
+               bg='brown',
+               fg='white',
+               command=lambda: self.sign_up_insetead()).place(x=130, y=250)
 
         self.root.mainloop()
         print("registration form  successfully created...")
 
-
-if __name__ == "__main__":
-    root1 = sign_up()

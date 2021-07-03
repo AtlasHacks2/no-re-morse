@@ -4,36 +4,37 @@ import sqlite3
 import hashlib
 
 import HomePage
+import Login
+
+
+def check_table_exists():
+    print("In check_table_exists")
+
+    db_file = 'sqliteDB/morseCode.db'
+
+    try:
+        conn = sqlite3.connect(db_file)
+
+        query = "CREATE TABLE IF NOT EXISTS userInfo " \
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " \
+                "username STRING, " \
+                "password STRING);"
+
+        conn.execute(query)
+
+    except Error as e:
+        print(e)
+
+
+def hash_password(raw_password):
+    print("In hash_password")
+
+    encoded = raw_password.encode()
+    result = hashlib.sha256(encoded)
+    return result.hexdigest()
 
 
 class sign_up:
-
-    def check_table_exists(self):
-        print("In check_table_exists")
-
-        db_file = 'sqliteDB/morseCode.db'
-
-        try:
-            conn = sqlite3.connect(db_file)
-
-            query = "CREATE TABLE IF NOT EXISTS userInfo " \
-                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, " \
-                    "username STRING, " \
-                    "password STRING);"
-
-            conn.execute(query)
-
-        except Error as e:
-            print(e)
-
-
-
-    def hash_password(self, raw_password):
-        print("In hash_password")
-
-        encoded = raw_password.encode()
-        result = hashlib.sha256(encoded)
-        return result.hexdigest()
 
     def check_db_for_user(self, username, hashed_pw):
         print("In check_db_for_user")
@@ -79,12 +80,11 @@ class sign_up:
 
     def check_user_exists(self, username, raw_password):
         # check if table exist
-        self.check_table_exists()
+        check_table_exists()
 
-        hashed_pw = self.hash_password(raw_password)
+        hashed_pw = hash_password(raw_password)
 
         return self.check_db_for_user(username, hashed_pw)
-
 
     def home_page(self, root, username, raw_password):
         if not username.strip():
@@ -102,6 +102,10 @@ class sign_up:
             root.destroy()
             HomePage.home_page()  # pass the username as an argument for use later
 
+    def login_instead(self):
+        self.root.destroy()
+        Login.login()
+
     def show(self):
         self.entry_2.configure(show='')
         self.check.configure(command=self.hide, text='hide password')
@@ -113,9 +117,9 @@ class sign_up:
     def __init__(self):
         self.root = Tk()
         self.root.geometry('500x300')
-        self.root.title("Registration Form")
+        self.root.title("No-re-morse")
 
-        self.label_0 = Label(self.root, text="Registration form", width=20, font=("bold", 20))
+        self.label_0 = Label(self.root, text="Sign up", width=20, font=("bold", 20))
         self.label_0.place(x=90, y=53)
 
         self.warning_1 = Label(self.root, text="", width=20, font=("bold", 10))
@@ -136,18 +140,23 @@ class sign_up:
         self.entry_2.place(x=240, y=180)
 
         self.check = Checkbutton(self.root, text='show password',
-                            command=self.show)
+                                 command=self.show)
         self.check.place(x=240, y=200)
 
-        Button(self.root,
-               text='Submit',
-               width=20,
-               bg='brown',
-               fg='white',
-               command=lambda: self.home_page(self.root,
-                                         self.entry_1.get(),
-                                         self.entry_2.get())).place(x=180, y=250)
-        # Button(self.root, text='Sign in', width=20, bg='brown', fg='white', command=lambda: home_page(self.root)).place(x=180, y=380)
+        self.submitBtn = Button(self.root,
+                               text='Submit',
+                               width=9,
+                               bg='brown',
+                               fg='white',
+                               command=lambda: self.home_page(self.root,
+                                                              self.entry_1.get(),
+                                                              self.entry_2.get())).place(x=280, y=250)
+        self.loginButton = Button(self.root,
+                                   text='Log in',
+                                   width=9,
+                                   bg='brown',
+                                   fg='white',
+                                   command=lambda: self.login_instead()).place(x=130, y=250)
 
         self.root.mainloop()
         print("registration form  successfully created...")
