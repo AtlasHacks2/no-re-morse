@@ -1,4 +1,6 @@
 from tkinter import*
+
+
 root = Tk()
 root.geometry('500x500')
 root.title("Registration Form")
@@ -24,4 +26,4 @@ entry_2.place(x=240,y=280)
 Button(root, text='Submit',width=20,bg='brown',fg='white').place(x=180,y=380)
 # it is use for display the registration form on the window
 root.mainloop()
-print("registration form  seccussfully created...")
+print("registration form  successfully created...")
