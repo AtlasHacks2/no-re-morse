@@ -12,9 +12,9 @@ class LevelOne:
     def check_num(self, first_letter, second_letter):
         self.entry_1.delete(0, 'end')
 
-        if self.score == 26:
+        if self.score == Constants.ALPHABET:
             return
-        
+
         # check if the strings are equal
         if first_letter == second_letter.capitalize():
             # remove current letter from list
@@ -24,7 +24,7 @@ class LevelOne:
             # if the score is == 26, display the next button
             if len(self.random_26) == 0:
                 # show the list
-                self.score = 26
+                self.score = Constants.ALPHABET
                 self.score_label['text'] = self.score
                 self.error_msg['text'] = "You did it!"
                 self.error_msg.config(fg="blue")
@@ -59,7 +59,7 @@ class LevelOne:
     def __init__(self):
         self.score = 0
 
-        self.random_26 = list(range(0, 26))
+        self.random_26 = list(range(0, Constants.ALPHABET))
         random.shuffle(self.random_26)
         print(self.random_26)
 
