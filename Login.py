@@ -90,7 +90,7 @@ class login:
         # check if user exists
         if self.check_user_exists(username, raw_password):
             root.destroy()
-            HomePage.home_page()  # pass the username as an argument for use later
+            HomePage.home_page(username)  # pass the username as an argument for use later
 
     def show(self):
         self.entry_2.configure(show='')
