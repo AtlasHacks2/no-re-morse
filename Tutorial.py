@@ -17,8 +17,7 @@ class tutorial:
         self.learn = Tk()
         self.learn.title('learnPage')
         self.learn.geometry("")
-        Button(self.learn, text='Home', width=20, bg='brown', fg='white', command=lambda: Home(self.learn)).place(x=40,
-                                                                                                                y=20)
+        Button(self.learn, text='Home', width=20, bg='brown', fg='white', command=lambda: Home(self.learn)).place(x=40,y=20)
         # CREATES LABEL FOR HYPERLINK
         link1 = Label(self.learn, text="LEARN MORSE CODE from a MEMORY CHAMP (in 15 minutes)", font=('Maiden Oranged', 10), fg="blue", cursor="hand2",bg="grey")
         link1.pack()
@@ -37,8 +36,7 @@ class tutorial:
         link1.pack()
         link1.bind("<Button-1>", lambda e: callback("https://youtu.be/FuCKs6mWYwA"))
         # CREATES LABEL FOR HYPERLINK
-        link1 = Label(self.learn, text="The Morse Code(7 minute video)",
-                      font=('Helvetica bold', 15), fg="blue", cursor="hand2")
+        link1 = Label(self.learn, text="The Morse Code(7 minute video)",font=('Helvetica bold', 15), fg="blue", cursor="hand2")
         link1.pack()
         link1.bind("<Button-1>", lambda e: callback("https://youtu.be/Z-kZHXBqj4A"))
 
