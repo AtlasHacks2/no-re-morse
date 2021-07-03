@@ -29,11 +29,11 @@ class LevelTen:
         self.root.destroy()
         HomePage.home_page(HomePage.home_page.name)
 
-    def check(input, text, warning_1):
-        if (input).equals(eng_to_morse_code(text)):
-            warning_1['text'] = 'CORRECT ANSWER'
+    def check(self, text, user_ans):
+        if user_ans == eng_to_morse_code(text):
+            self.warning_1['text'] = 'CORRECT ANSWER'
         else:
-            warning_1['text'] = 'WRONG ANSWER , TRY AGAIN!!'
+            self.warning_1['text'] = 'WRONG ANSWER , TRY AGAIN!!'
 
     def __init__(self):
         self.root = Tk()
@@ -41,10 +41,8 @@ class LevelTen:
         self.root.title("Play")
         self.warning_1 = Label(self.root, text="", width=20, font=("bold", 10))
         self.warning_1.config(fg="red")
-        self.warning_1.place(x=170, y=100)
+        self.warning_1.place(x=170, y=350)
         self.warning_1.configure(anchor="center")
-
-
 
         # sentences = []
         # for i in range(23):
@@ -70,12 +68,36 @@ class LevelTen:
 
         sentence = random_line('AlphaHacksSampleText.txt')
         self.labelQ = Label(self.root, text="Enter the morse code for the following sentence", width=40, font=("bold", 10))
-        self.labelQ.place(x=90, y=33)
-        self.label_0 = Label(self.root, text=sentence, width=40, font=("bold", 10))
-        self.label_0.place(x=100, y=53)
-        self.labelA= Label(self.root, text="Enter Answer", width=30, font=("bold", 10))
-        self.labelA.place(x=100, y=90)
-        self.entry_1 = Entry(self.root)
-        self.entry_1.place(x=160, y=90)
+        self.labelQ.place(x = 90,
+                            y = 33,
+                            width=200,
+                            height=100)
+        self.label_0 = Label(self.root, text=sentence, width=40, wraplength=300, font=("bold", 10))
+        self.label_0.place(x=100, y=70)
+        self.labelA = Label(self.root, text="Enter Answer", width=30, font=("bold", 10))
+        self.labelA.config(fg="blue")
+        self.labelA.place(x=45, y=120)
+        self.entry_1 = Text(self.root)
+        self.entry_1.place(x = 100,
+                            y = 140,
+                            width=320,
+                            height=200)
+
+
+        self.submit = Button(self.root,
+                             text='Submit',
+                             width=9,
+                             bg='brown',
+                             fg='white',
+                             command=lambda: self.check(sentence,
+                                                        self.entry_1.get("1.0",END)))
+        self.submit.place(x=280, y=380)
+
+        self.back = Button(self.root,
+                           text='Back',
+                           width=9,
+                           bg='blue',
+                           fg='white',
+                           command=lambda: self.go_home()).place(x=140, y=380)
+
         self.root.mainloop()
-        self.submitBtn = Button(self.root,text='Submit',width=9,bg='brown',fg='white',command=lambda: self.check(self.root,self.entry_1.get(),self.warning_1)).place(x=280, y=250)
