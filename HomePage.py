@@ -21,7 +21,7 @@ class home_page:
         name = username
         self.home = Tk()
         self.home.title('Home Page')
-        self.home.geometry("300x200+10+10")
+        self.home.geometry("500x300")
         # Add image file
         #bg = PhotoImage(file="Your_img.png")
 

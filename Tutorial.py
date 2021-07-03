@@ -9,7 +9,8 @@ def callback(url):
 
 def Home(root):
     root.destroy()
-    HomePage.home_page()
+    HomePage.home_page(HomePage.home_page.name)
+
 class tutorial:
     def __init__(self):
         #CREATES INSTANCE OF TKINTER FRAM
