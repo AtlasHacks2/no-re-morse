@@ -22,7 +22,7 @@ class tutorial:
         # CREATES LABEL FOR HYPERLINK
         link1 = Label(self.learn, text="LEARN MORSE CODE from a MEMORY CHAMP (in 15 minutes)", font=('Maiden Oranged', 10), fg="blue", cursor="hand2",bg="grey")
         link1.pack()
-        link1.bind("<Button-1>", lambda e:callback("https://www.youtube.com/watch?v=D8tPkb98Fkk"))
+        link1.bind("<Button-1>", lambda e: callback("https://www.youtube.com/watch?v=D8tPkb98Fkk"))
         # CREATES LABEL FOR HYPERLINK
         link1 = Label(self.learn, text="Morse Code Sound Effects(2 minute video)",font=('Maiden Orange', 10), fg="blue", cursor="hand2")
         link1.pack()
