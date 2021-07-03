@@ -22,7 +22,7 @@ def home_page(root, username, raw_password):
 class sign_up:
     def __init__(self):
         self.root = Tk()
-        self.root.geometry('500x300')
+        self.root.geometry('500x500')
         self.root.title("Registration Form")
         label_0 = Label(self.root, text="Registration form", width=20, font=("bold", 20))
         label_0.place(x=90, y=53)
