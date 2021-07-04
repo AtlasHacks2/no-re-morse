@@ -3,6 +3,7 @@ from tkinter import *
 import Level1
 import Level2
 import Level3
+import Level4
 import Level10
 import HomePage
 
@@ -21,6 +22,12 @@ def L3(root):
     root.destroy()
     Level3.LevelThree()
 
+
+def L4(root):
+    root.destroy()
+    Level4.LevelFour()
+
+
 def L10(root):
     root.destroy()
     Level10.LevelTen()
@@ -36,6 +43,7 @@ class playnow:
         self.root = Tk()
         self.root.geometry('650x580')
         self.root.title("Play")
+
         self.root.iconbitmap('FireAnts_logo.ico')
         # Define image
         bg = PhotoImage(file="junk/Sign_upAndLog_in.png")
@@ -49,7 +57,7 @@ class playnow:
         Button(self.root, text='Level 1', width=20,bg='#BAC1FF', fg='black',command=lambda: L1(self.root)).place(x=100, y=200)
         Button(self.root, text='Level 2', width=20, bg='#BAC1FF', fg='black',command=lambda: L2(self.root)).place(x=300, y=200)
         Button(self.root, text='Level 3', width=20, bg='#BAC1FF', fg='black', command=lambda: L3(self.root)).place(x=500, y=200)
-        Button(self.root, text='Level 4', width=20, bg='#BAC1FF', fg='black').place(x=100, y=300)
+        Button(self.root, text='Level 4', width=20, bg='#BAC1FF', fg='black', command=lambda: L4(self.root)).place(x=100, y=300)
         Button(self.root, text='Level 5', width=20, bg='#BAC1FF', fg='black').place(x=300, y=300)
         Button(self.root, text='Level 6', width=20, bg='#BAC1FF', fg='black').place(x=500, y=300)
         Button(self.root, text='Level 7', width=20, bg='#BAC1FF', fg='black').place(x=100, y=400)
