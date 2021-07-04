@@ -8,7 +8,7 @@ if os.path.exists("newSound.wav"):
 else:
   print("The file does not exist")
 
-message = "12-+@4adsv3rvq23t"
+message = "sos"
 
 dot = "../soundFiles/dot.wav"
 dash = "../soundFiles/dash4.wav"
@@ -38,7 +38,7 @@ for letter in message:
 
 print(morseArray)
 
-outfile = "newSound.wav"
+outfile = "sos.wav"
 
 data = []
 for infile in morseArray:
