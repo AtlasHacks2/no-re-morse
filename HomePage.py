@@ -1,6 +1,7 @@
 from tkinter import *
 import Tutorial
 import PlayNowHome
+import Storyline
 
 
 def learn(root):
@@ -11,6 +12,9 @@ def learn(root):
 def Play(root):
     root.destroy()
     PlayNowHome.playnow()
+def Story(root):
+    root.destroy()
+    Storyline.Story()
 
 class home_page:
     name = "no_name"
@@ -41,8 +45,8 @@ class home_page:
         learn_button = Button(self.home, text="Learn now", fg='blue', command=lambda: learn(self.home)).place(x=80, y=100)
         play = Button(self.home, text="Play Now", fg='blue', command=lambda: Play(self.home))
         play.place(x=80, y=50)
-        suggested = Button(self.home, text="Suggested to know", fg='blue')
-        suggested.place(x=80, y=150)
+        story= Button(self.home, text="Story mode",command=lambda: Story(self.home), fg='blue')
+        story.place(x=80, y=150)
 
         label_1 = Label(self.home, text=username, width=20, font=("bold", 10))
         label_1.place(x=10, y=10)
