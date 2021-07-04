@@ -106,47 +106,65 @@ class login:
 
     def __init__(self):
         self.root = Tk()
-        self.root.geometry('500x300')
+        self.root.geometry('920x570')
         self.root.title("No-re-morse")
+        self.root.iconbitmap('FireAnts_logo.ico')
+        # Define image
+        bg = PhotoImage(file="junk/Sign_upAndLog_in.png")
+
+        # Create a canvas
+        my_canvas = Canvas(self.root, width=500, height=300)
+        my_canvas.pack(fill="both", expand=True)
+        # Set image in canvas
+        my_canvas.create_image(0, 0, image=bg, anchor="nw")
 
         self.label_0 = Label(self.root, text="Login", width=20, font=("bold", 20))
-        self.label_0.place(x=90, y=53)
+        self.label_0.place(x=460, y=100)
 
         self.warning_1 = Label(self.root, text="", width=20, font=("bold", 10))
         self.warning_1.config(fg="red")
-        self.warning_1.place(x=170, y=100)
+        self.warning_1.place(x=500, y=150)
         self.warning_1.configure(anchor="center")
 
         self.label_1 = Label(self.root, text="Username", width=20, font=("bold", 10))
-        self.label_1.place(x=80, y=130)
+        #self.label_1.place(x=0, y=130)
+        my_canvas.create_window(600, 250, window=self.label_1)
 
         self.entry_1 = Entry(self.root)
-        self.entry_1.place(x=240, y=130)
+        self.entry_1.place(x=700, y=240)
+
 
         self.label_2 = Label(self.root, text="Password", width=20, font=("bold", 10))
-        self.label_2.place(x=80, y=180)
+        #self.label_2.place(x=80, y=180)
+        my_canvas.create_window(600, 300, window=self.label_2)
 
         self.entry_2 = Entry(self.root, show="*")
-        self.entry_2.place(x=240, y=180)
+        self.entry_2.place(x=700, y=290)
+        #my_canvas.create_window(700, 290, window=self.entry_2)
 
         self.check = Checkbutton(self.root, text='show password',
                             command=self.show)
-        self.check.place(x=240, y=200)
-
-        Button(self.root,
+        #self.check.place(x=240, y=200)
+        my_canvas.create_window(800, 340, window=self.check)
+        self.submit= Button(self.root,
                text='Submit',
                width=9,
-               bg='brown',
-               fg='white',
+               bg='#BAC1FF',
+               fg='black',
                command=lambda: self.home_page(self.root,
                                          self.entry_1.get(),
-                                         self.entry_2.get())).place(x=280, y=250)
-        Button(self.root,
+                                         self.entry_2.get()))
+
+        my_canvas.create_window(750, 425, window=self.submit)
+
+        self.sign_up = Button(self.root,
                text='Sign up',
                width=9,
-               bg='brown',
-               fg='white',
-               command=lambda: self.sign_up_insetead()).place(x=130, y=250)
+               bg='#BAC1FF',
+               fg='black',
+               command=lambda: self.sign_up_insetead())
+        my_canvas.create_window(590, 420, window=self.sign_up)
+
 
         self.root.mainloop()
         print("registration form  successfully created...")

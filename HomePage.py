@@ -21,6 +21,15 @@ class home_page:
         self.home = Tk()
         self.home.title('Home Page')
         self.home.geometry("500x300")
+        self.home.iconbitmap('FireAnts_logo.ico')
+        # Define image
+        bg = PhotoImage(file="junk/Home_page.png")
+
+        # Create a canvas
+        my_canvas = Canvas(self.home, width=500, height=300)
+        my_canvas.pack(fill="both", expand=True)
+        # Set image in canvas
+        my_canvas.create_image(0, 0, image=bg, anchor="nw")
         # Add image file
         #bg = PhotoImage(file="Your_img.png")
 
