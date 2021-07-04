@@ -76,6 +76,8 @@ class LevelOne:
         self.root.geometry('500x500')
         self.root.title("Identify the letter")
 
+        self.root.iconbitmap('FireAnts_logo.ico')
+
         self.name = Label(self.root, text=HomePage.home_page.name, width=20, font=("bold", 10))
         self.name.place(x=50, y=30)
 
