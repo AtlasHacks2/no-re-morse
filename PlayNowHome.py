@@ -41,27 +41,32 @@ def Home(root):
 class playnow:
     def __init__(self):
         self.root = Tk()
-        self.root.geometry('800x800')
+        self.root.geometry('650x580')
         self.root.title("Play")
-        Button(self.root, text='Level 1', width=20, bg='brown', fg='white', command=lambda: L1(self.root)).place(x=100,
-                                                                                                                 y=100)
-        Button(self.root, text='Level 2', width=20, bg='brown', fg='white', command=lambda: L2(self.root)).place(x=300,
-                                                                                                                 y=100)
-        Button(self.root, text='Level 3', width=20, bg='brown', fg='white', command=lambda: L3(self.root)).place(x=500,
-                                                                                                                 y=100)
-        Button(self.root, text='Level 4', width=20, bg='brown', fg='white', command=lambda: L4(self.root)).place(x=100,
-                                                                                                                 y=300)
-        Button(self.root, text='Level 5', width=20, bg='brown', fg='white').place(x=300, y=300)
-        Button(self.root, text='Level 6', width=20, bg='brown', fg='white').place(x=500, y=300)
-        Button(self.root, text='Level 7', width=20, bg='brown', fg='white').place(x=100, y=500)
-        Button(self.root, text='Level 8', width=20, bg='brown', fg='white').place(x=300, y=500)
-        Button(self.root, text='Level 9', width=20, bg='brown', fg='white').place(x=500, y=500)
-        Button(self.root, text='Level 10', width=20, bg='brown', fg='white', command=lambda: L10(self.root)).place(
-            x=100, y=700)
 
-        Button(self.root, text='Home', width=20, bg='brown', fg='white', command=lambda: Home(self.root)).place(x=40,
-                                                                                                                y=20)
+        self.root.iconbitmap('FireAnts_logo.ico')
+        # Define image
+        bg = PhotoImage(file="junk/Sign_upAndLog_in.png")
+
+        # Create a canvas
+        my_canvas = Canvas(self.root, width=710, height=580)
+        my_canvas.pack(fill="both", expand=True)
+        # Set image in canvas
+        my_canvas.create_image(0, 0, image=bg, anchor="nw")
+
+        Button(self.root, text='Level 1', width=20,bg='#BAC1FF', fg='black',command=lambda: L1(self.root)).place(x=100, y=200)
+        Button(self.root, text='Level 2', width=20, bg='#BAC1FF', fg='black',command=lambda: L2(self.root)).place(x=300, y=200)
+        Button(self.root, text='Level 3', width=20, bg='#BAC1FF', fg='black', command=lambda: L3(self.root)).place(x=500, y=200)
+        Button(self.root, text='Level 4', width=20, bg='#BAC1FF', fg='black', command=lambda: L4(self.root)).place(x=100, y=300)
+        Button(self.root, text='Level 5', width=20, bg='#BAC1FF', fg='black').place(x=300, y=300)
+        Button(self.root, text='Level 6', width=20, bg='#BAC1FF', fg='black').place(x=500, y=300)
+        Button(self.root, text='Level 7', width=20, bg='#BAC1FF', fg='black').place(x=100, y=400)
+        Button(self.root, text='Level 8', width=20, bg='#BAC1FF', fg='black').place(x=300, y=400)
+        Button(self.root, text='Level 9', width=20, bg='#BAC1FF', fg='black').place(x=500, y=400)
+        Button(self.root, text='Level 10', width=20, bg='#BAC1FF', fg='black', command=lambda: L10(self.root)).place(x=300, y=500)
+
+        Button(self.root, text='Home', width=20, bg='#BAC1FF', fg='black', command=lambda: Home(self.root)).place(x=50, y=50)
 
         label_1 = Label(self.root, text=HomePage.home_page.name, width=20, font=("bold", 10))
-        label_1.place(x=600, y=10)
+        label_1.place(x=500, y=50)
         self.root.mainloop()

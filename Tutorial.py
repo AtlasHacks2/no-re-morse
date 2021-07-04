@@ -17,6 +17,7 @@ class tutorial:
         self.learn = Tk()
         self.learn.title('learnPage')
         self.learn.geometry("")
+        self.learn.iconbitmap('FireAnts_logo.ico')
         Button(self.learn, text='Home', width=20, bg='brown', fg='white', command=lambda: Home(self.learn)).place(x=40,y=20)
         # CREATES LABEL FOR HYPERLINK
         link1 = Label(self.learn, text="LEARN MORSE CODE from a MEMORY CHAMP (in 15 minutes)", font=('Maiden Oranged', 10), fg="blue", cursor="hand2",bg="grey")
